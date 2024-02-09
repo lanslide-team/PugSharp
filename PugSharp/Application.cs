@@ -1885,6 +1885,22 @@ public class Application : IApplication
                         {
                             _CsServer.LoadAndExecuteConfig("warmup.cfg");
                         }
+
+                        if (_ServerConfig?.AutoloadMatchConfigFile == true)
+                        {
+                            var loadMatchConfigFromFileResult = _ConfigProvider.LoadMatchConfigFromFileAsync(_ServerConfig.MatchConfigFilename).GetAwaiter().GetResult();
+                            loadMatchConfigFromFileResult.Switch(
+                                error =>
+                                {
+                                    _Logger.LogError(nameof(Resources.PugSharp_Command_Error_LoadingConfig));
+                                },
+                                matchConfig =>
+                                {
+                                    _Logger.LogInformation(nameof(Resources.PugSharp_Command_ConfigLoaded));
+                                    InitializeMatch(matchConfig);
+                                }
+                            );
+                        }
                     }
                     catch (Exception e)
                     {

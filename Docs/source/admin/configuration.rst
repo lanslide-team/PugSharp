@@ -116,6 +116,8 @@ Serverconfig Fields
 +-----------------------------+---------+---------------------------------------------------------------------------------------+
 | allow_players_without_match | true    | Defines if players can join the server when no match is loaded.                       |
 +-----------------------------+---------+---------------------------------------------------------------------------------------+
+| autoload_match_config_file  | false   | Automatically load the match config file on server initialisation.                    |
++-----------------------------+---------+---------------------------------------------------------------------------------------+
 
 Serverconfig Example
 '''''''''''''''''''''
@@ -124,7 +126,8 @@ Serverconfig Example
 
    {
        "locale": "en",
-       "allow_players_without_match": true
+       "allow_players_without_match": true,
+       "autoload_match_config_file": false
    }
 
 

@@ -91,7 +91,7 @@ public class ConfigProvider
                 }
 
                 configJsonStream.Seek(0, SeekOrigin.Begin);
-                var matchConfigPath = Path.Combine(_ConfigDirectory, "match.json");
+                var matchConfigPath = Path.Combine(_ConfigDirectory, _ServerConfig == null  ? "match.json" : _ServerConfig.MatchConfigFilename);
                 var fileWriteStream = File.Open(matchConfigPath, FileMode.Create);
                 await using (fileWriteStream.ConfigureAwait(false))
                 {
